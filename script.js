@@ -100,7 +100,8 @@ var numberArray = [
 document.getElementById("generate").addEventListener("click", passwordOptions);
 
 function passwordOptions() {
-    
+
+
     var length = parseInt(prompt("How many characters would you like in this password?"));
 
     if (length < 8) {
@@ -126,22 +127,32 @@ function passwordOptions() {
         length: length,
         okSpecialCharacters: okSpecialCharacters,
         okUpperCaseLetters: okUpperCaseLetters,
-        okNumbers: okNumbers
+        okNumbers: okNumbers,
+        okLowerCaseLetters: okLowerCaseLetters
     };
     console.log(passwordChoices.okNumbers);
+    console.log(passwordChoices.okSpecialCharacters);
+    console.log(passwordChoices.okUpperCaseLetters);
+    console.log(passwordChoices.okLowerCaseLetters);
     alert("Thank you. I will now generate your password.");
+    for (i = 0; i < length; i++) {
 
-    function randomGenerator() {
-        
+    if(okSpecialCharacters === true) {
+        var special = specialCharacters[Math.floor(Math.random()*specialCharacters.length)];
+        console.log(special);
+    }
+    if(okUpperCaseLetters === true) {
+        var upper = upperCaseLetters[Math.floor(Math.random()*upperCaseLetters.length)];
+        console.log(upper);
+    }
+    if(okLowerCaseLetters === true) {
+        var lower = lowerCaseLetters[Math.floor(Math.random()*lowerCaseLetters.length)];
+        console.log(lower);
+    }
+    if(okNumbers === true) {
+        var passwordNum = numberArray[Math.floor(Math.random()*numberArray.length)];
+        console.log(passwordNum);
     }
 }
-
-
-
-
-
-
-
-
-    
-
+alert(upper+lower+special+passwordNum)*length;
+}
