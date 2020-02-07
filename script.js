@@ -1,4 +1,6 @@
 //special characters
+var newPassword = [""];
+
 var specialCharacters = [
   "%",
   ";",
@@ -101,13 +103,17 @@ document.getElementById("generate").addEventListener("click", passwordOptions);
 
 function passwordOptions() {
 
+    function eraseText() {
+      document.getElementById("password").value=""
+    };
 
-    var length = parseInt(prompt("How many characters would you like in this password?"));
 
-    if (length < 8) {
+    var passwordLength = parseInt(prompt("How many characters would you like in this password?"));
+
+    if (passwordLength < 8) {
         alert("Password must be at least 8 characters to proceed!"); return;
     }
-    if(length > 128) {
+    if(passwordLength > 128) {
         alert("Password must be 128 characters or less to proceed!"); return;
     }
 
@@ -123,36 +129,61 @@ function passwordOptions() {
             alert("You must choose at least one character type before proceeding!"); return;
         }
     
-    var passwordChoices = {
-        length: length,
-        okSpecialCharacters: okSpecialCharacters,
-        okUpperCaseLetters: okUpperCaseLetters,
-        okNumbers: okNumbers,
-        okLowerCaseLetters: okLowerCaseLetters
-    };
-    console.log(passwordChoices.okNumbers);
-    console.log(passwordChoices.okSpecialCharacters);
-    console.log(passwordChoices.okUpperCaseLetters);
-    console.log(passwordChoices.okLowerCaseLetters);
     alert("Thank you. I will now generate your password.");
-    for (i = 0; i < length; i++) {
+    console.log(okLowerCaseLetters);
+    console.log(okNumbers);
+    console.log(okUpperCaseLetters);
+    console.log(okSpecialCharacters);
+    console.log(passwordLength);
 
-    if(okSpecialCharacters === true) {
-        var special = specialCharacters[Math.floor(Math.random()*specialCharacters.length)];
-        console.log(special);
-    }
-    if(okUpperCaseLetters === true) {
-        var upper = upperCaseLetters[Math.floor(Math.random()*upperCaseLetters.length)];
-        console.log(upper);
-    }
-    if(okLowerCaseLetters === true) {
-        var lower = lowerCaseLetters[Math.floor(Math.random()*lowerCaseLetters.length)];
-        console.log(lower);
-    }
-    if(okNumbers === true) {
-        var passwordNum = numberArray[Math.floor(Math.random()*numberArray.length)];
-        console.log(passwordNum);
-    }
+    var randomUpper = upperCaseLetters[Math.floor(Math.random()*upperCaseLetters.length)+1];
+    var randomLower = lowerCaseLetters[Math.floor(Math.random()*lowerCaseLetters.length)+1];
+    var randomSpecial = specialCharacters[Math.floor(Math.random()*specialCharacters.length)+1];
+    var randomNumber = numberArray[Math.floor(Math.random()*numberArray.length)+1];
+    console.log(randomLower);
+    console.log(randomNumber);
+    console.log(randomSpecial);
+    console.log(randomUpper);
+
+    for (i = 0; i < passwordLength; i++) {
+      if (okLowerCaseLetters === true){
+          newPassword.push(lowerCaseLetters[Math.floor(Math.random()*lowerCaseLetters.length)]);
+          if (newPassword.length === passwordLength +1){
+          break;
+          }
+      }
+      if (okUpperCaseLetters === true){
+          newPassword.push(upperCaseLetters[Math.floor(Math.random()*upperCaseLetters.length)]);
+              if (newPassword.length === passwordLength +1){ break;}
+      }
+      if (okSpecialCharacters === true){
+          newPassword.push(specialCharacters[Math.floor(Math.random()*specialCharacters.length)]);
+          if (newPassword.length === passwordLength +1){
+          break;
+          }
+      }
+      if (okNumbers === true){
+          newPassword.push(numberArray[Math.floor(Math.random()*numberArray.length)]); 
+          if (newPassword.length === passwordLength +1){
+          break;
+          }
+      }
+  }
+  
+console.log(newPassword);
+var passwordarea = document.getElementById("password");
+newPassword = newPassword.join('');
+passwordarea.textContent = newPassword
+
+
+
 }
-alert(upper+lower+special+passwordNum)*length;
-}
+
+
+
+
+
+
+
+    
+
