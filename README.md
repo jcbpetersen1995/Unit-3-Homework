@@ -1,5 +1,6 @@
 <h1>Password Generator</h1>
 
+<img src="https://github.com/jcbpetersen1995/Unit-3-Homework/blob/master/Screen%20Shot%202020-02-07%20at%203.49.07%20PM.png?raw=true">
 
 
 <h3>User Story</h3>
